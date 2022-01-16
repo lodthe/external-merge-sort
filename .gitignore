@@ -1,2 +1,5 @@
 input.txt
 output.txt
+bin/generator
+bin/sort
+bin/validator
