@@ -1,3 +1,33 @@
+# External merge sort
+
+An implementation of external merge sort algorithm (with 2-way merge) written in Go. This particular implementation sorts strings. The implementation is located [here](./pkg/algo/merge_sort.go).
+
+As it's implementation of an algorithm in external memory, we are interested in disk usage. If the size of main memory is M, and we read/write B bytes at a time, 
+
+The tool is not for production usage. If you want to sort huge files with high performance, probably, you want to find an implementation written in C or C++ (or any other programming language without a garbage collector).
+
+## Usage
+
+The next example shows how to generate a huge file, sort it and validate the result:
+```bash
+make all
+
+# Generate 42000000 lines. 
+# Allowed line lengths: 126-128. (~5GB file will be created)
+# Each line will have the same prefix of length 110.
+./bin/generator -min-length 126 -max-length 128 -equal-prefix-length 110 -alphabet hex -output input.txt -count 42000000
+
+# Sort input.txt and save the result in output.txt.
+# Main memory limit: 500MB. Block size: 1MB.
+# (in fact, more memory may be allocated due to the presence of a garbage collector)
+./bin/sort -memory 500000000 -blocksize 1000000 -input input.txt -output output.txt
+
+# Validate the result.
+./bin/validator -input input.txt -output output.txt
+```
+
+Use `--help` for more detail.
+
 ## Tools
 
 There are three useful tools in this repository.
@@ -42,7 +72,7 @@ Usage of ./bin/generator:
 
 ### Sort
 
-Sort is an implementation of external merge sort algorithm.
+Sort is an implementation of external merge sort algorithm. 
 
 Choose memory limit and block size according to your setup and limitations.
 
