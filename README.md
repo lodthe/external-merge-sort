@@ -2,7 +2,7 @@
 
 An implementation of external merge sort algorithm (with 2-way merge) written in Go. This particular implementation sorts strings. The implementation is located [here](./pkg/algo/merge_sort.go).
 
-As it's implementation of an algorithm in external memory, we are interested in disk usage. If the size of main memory is M, and we read/write B bytes at a time, 
+As it's an implementation of an algorithm in external memory, we are interested in disk usage. If the size of the main memory is M, and we read/write B bytes at a time, the number of disk ops to sort N bytes is `O(N/B * log(N/M))` [[png](./media/why-tex-is-still-not-supported-in-markdown.png)] (for two-way merge).
 
 The tool is not for production usage. If you want to sort huge files with high performance, probably, you want to find an implementation written in C or C++ (or any other programming language without a garbage collector).
 
