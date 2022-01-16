@@ -46,7 +46,7 @@ If the specified value doesn't match with any of the predefined alphabet names, 
 		log.Fatalf("max-length must be >= 0\n")
 	}
 
-	if *minLength <= 0 {
+	if *minLength < 0 {
 		log.Fatalf("min-length must be >= 0\n")
 	}
 
